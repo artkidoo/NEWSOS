@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function () {
+        try {
+          var originalFetch = window.fetch;
+          var currentFetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function () {
+              return currentFetch;
+            },
+            set: function (fn) {
+              currentFetch = fn;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (_) {}
+
+        try {
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            var protoFetch = Window.prototype.fetch;
+            Object.defineProperty(Window.prototype, 'fetch', {
+              get: function () {
+                return protoFetch;
+              },
+              set: function (fn) {
+                protoFetch = fn;
+              },
+              configurable: true,
+              enumerable: true,
+            });
+          }
+        } catch (_) {}
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWSROOM OS</title>
+    <meta name="description" content="Production-grade editorial news automation platform: Discovery, Normalization, Deduplication, and Story Intelligence." />
+    <meta property="og:title" content="NEWSROOM OS" />
+    <meta property="og:description" content="Production-grade editorial news automation platform: Discovery, Normalization, Deduplication, and Story Intelligence." />
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "NEWSROOM OS",
+  "description": "Production-grade editorial news automation platform: Discovery, Normalization, Deduplication, and Story Intelligence.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
