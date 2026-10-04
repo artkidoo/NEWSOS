@@ -36,6 +36,7 @@ build-backend = "setuptools.build_meta"
 pythonpath = ["."]
 testpaths = ["tests"]
 asyncio_mode = "strict"
+addopts = "--import-mode=importlib"
 filterwarnings = [
     "ignore::DeprecationWarning",
 ]

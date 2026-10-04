@@ -1,0 +1,17 @@
+# Environment
+.env
+.env.local
+.env.*
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Database files (local dev)
+*.db
+newsroom.db

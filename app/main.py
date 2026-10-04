@@ -7,10 +7,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Import all models to ensure metadata registration
 import app.models.article
+import app.models.editorial
 import app.models.ingestion_run
 import app.models.intelligence
 import app.models.source
-from app.api.routes import articles, health, ingestion, intelligence, sources
+from app.api.routes import articles, editorial, health, ingestion, intelligence, sources
 from app.core.config import get_settings
 from app.core.logging import setup_logging
 from app.db.base import Base
@@ -22,6 +23,9 @@ setup_logging(settings.LOG_LEVEL)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Production startup must fail clearly if a real AI provider is selected
+    # but required configuration is missing (Phase 3 editorial desk).
+    settings.validate_ai_config()
     # Initialize DB tables for development/testing if not migrated
     Base.metadata.create_all(bind=engine)
     yield
@@ -48,6 +52,7 @@ app.include_router(sources.router, prefix="/api")
 app.include_router(articles.router, prefix="/api")
 app.include_router(ingestion.router, prefix="/api")
 app.include_router(intelligence.router, prefix="/api")
+app.include_router(editorial.router, prefix="/api")
 
 
 @app.get("/")

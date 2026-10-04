@@ -34,6 +34,8 @@ class StoryCluster(Base):
     # Relationships
     cluster_articles = relationship("StoryClusterArticle", back_populates="cluster", cascade="all, delete-orphan")
     cluster_entities = relationship("StoryClusterEntity", back_populates="cluster", cascade="all, delete-orphan")
+    drafts = relationship("EditorialDraft", back_populates="cluster", cascade="all, delete-orphan")
+    generations = relationship("EditorialGeneration", back_populates="cluster", cascade="all, delete-orphan")
 
 
 class StoryClusterArticle(Base):
